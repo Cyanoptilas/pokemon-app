@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 import "./App.css";
+import Card from "./components/Card";
 import {
   AllPokemonData,
   AllPokemonResult,
@@ -35,15 +37,19 @@ function App() {
 
   return (
     <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="pokemonCardContainer">
-          {pokemonData?.map((pokemonData, i) => {
-            return <Card key={i} pokemon={pokemonData} />;
-          })}
-        </div>
-      )}
+      <div className={clsx("text-center")}>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <div
+            className={clsx("grid grid-cols-3 gap-5 mt-5 place-items-center")}
+          >
+            {pokemonData?.map((pokemonData, i) => {
+              return <Card key={i} pokemon={pokemonData} />;
+            })}
+          </div>
+        )}
+      </div>
     </>
   );
 }
